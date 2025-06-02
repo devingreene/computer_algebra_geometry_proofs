@@ -35,6 +35,6 @@ print(D)
 # midpoints under affine transformations
 
 # Proof of bisector co-location: start with circle and draw triangle
-# around it so that circle is tangent to each side.  Easy to see that
-# any similarity class can be obtained.  Then center of circle is
-# co-location of bisectors.
+# around it so that circle is triangle's inscribed circle.  Easy to see
+# that any similarity class can be obtained this way.  Then center of
+# circle is co-location of bisectors.
