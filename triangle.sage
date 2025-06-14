@@ -57,3 +57,22 @@ print(D)
 # around it so that circle is triangle's inscribed circle.  Easy to see
 # that any similarity class can be obtained this way.  Then center of
 # circle is co-location of bisectors.
+
+# Napolean
+# In complex plane
+R.<zeta,z> = QQ[]
+zeta,z = R.quotient(zeta^3 - 1).gens()
+
+z1,z2,z3 = 0,1,z
+
+# Find third point in `circumscribed' eq triangles
+t1 = -zeta*z2 - zeta^2*z3
+t2 = -zeta*z3 - zeta^2*z1
+t3 = -zeta*z1 - zeta^2*z2
+
+# Center points of circumscribed eq triangles
+c1 = t1 + z2 + z3
+c2 = t2 + z3 + z1
+c3 = t3 + z1 + z2
+
+print(c1 + zeta^2 * c2 + zeta * c3)
