@@ -11,20 +11,20 @@ A61,B61,C61 = y6*z1-y1*z6,z6*x1-z1*x6,x6*y1-x1*y6
 
 p14x = B12*C45 - C12*B45
 p14y = C12*A45 - A12*C45
-D14 = A12*B45 - B12*A45
+p14z = A12*B45 - B12*A45
 
 p25x = B23*C56 - C23*B56
 p25y = C23*A56 - A23*C56
-D25 = A23*B56 - B23*A56
+p25z = A23*B56 - B23*A56
 
 p36x = B34*C61 - C34*B61
 p36y = C34*A61 - A34*C61
-D36 = A34*B61 - B34*A61
+p36z = A34*B61 - B34*A61
 
 D = det(matrix(
-    [[p14x,p14y,D14],
-    [p25x,p25y,D25],
-    [p36x,p36y,D36]],
+    [[p14x,p14y,p14z],
+    [p25x,p25y,p25z],
+    [p36x,p36y,p36z]],
     ))
 assert D.parent() is R
 
