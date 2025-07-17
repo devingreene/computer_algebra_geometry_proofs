@@ -34,4 +34,5 @@ p2 = matrix{{det(m14_{1,2}),det(m14_{2,0}),det(m14_{0,1})}};
 p3 = matrix{{det(m25_{1,2}),det(m25_{2,0}),det(m25_{0,1})}};
 
 m = p1||p2||p3;
-print det(m);
+<< "Determinant is "
+<< det(m);
