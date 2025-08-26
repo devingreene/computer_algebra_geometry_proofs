@@ -8,7 +8,7 @@
 *-
 
 F = frac (ZZ[a,b])
-R = F[sr3,r_0..r_2,c_0..c_1,s_0..s_1]
+R = F[sr3,r_0..r_1,c_0..c_1,s_0..s_1]
 
 v0 = matrix{{0},{0}}
 v1 = matrix{{1},{0}}
@@ -38,8 +38,6 @@ I = ideal(
    ) 
 
 third2 = rot60*third0inv*third1inv
-
-I = I + ideal(r_2*third2^3*ar2 + ar1)
 
 Q = R/I
 
