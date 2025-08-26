@@ -1,45 +1,87 @@
-F = frac (ZZ[a,b])
-R = F[r3,c_1..c_3,s_1..s_3]
+-* Proof of Morley's theorem *-
 
-I = (
-    r3^2 - 3,
-    c_1^3 - 3*c_1*s_1^2 - a,
-    3*c_1^2*s_1 - s_1^3 - b,
-    c_2^3 - 3*c_2*s_2^2 - (-a + 1)/(a^2 - 2*a + b^2 + 1),
-    3*c_2^2*s_2 - s_2^3 - b/(a^2 - 2*a + b^2 + 1),
-    c_3^3 - 3*c_3*s_3^2 - (a^2 - a + b^2)/(a^2 + b^2),
-    3*c_3^2*s_3 - s_3^3 - b/(a^2 + b^2)
-)
+-*
+    Uses the fact that (a,b,c) is an equilateral triangle iff
+            a + zeta b + zeta^2 c == 0
+         or a + zeta^2 b zeta c == 0
+    where zeta = primitive cube root of unity
+*-
+
+F = frac (ZZ[a,b])
+R = F[sr3,r_0..r_2,c_0..c_1,s_0..s_1]
+
+v0 = matrix{{0},{0}}
+v1 = matrix{{1},{0}}
+v2 = matrix{{a},{b}}
+
+ar0 = v1 - v0
+ar1 = v2 - v1
+ar2 = v0 - v2
+
+Ones = matrix{{1,1}}
+
+third = (x,y) -> matrix{{x,-y},{y,x}}
+
+third0 = third(c_0,s_0)
+third0inv = transpose third0
+third1 = third(c_1,s_1)
+third1inv = transpose third1
+
+rot60 = matrix{{1/2,-sr3/2},{sr3/2,1/2}}
+
+I = ideal(
+    sr3^2 - 3,
+    c_0^2 + s_0^2 - 1,
+    c_1^2 + s_1^2 - 1,
+    r_0*third0^3*ar0 + ar2,
+    r_1*third1^3*ar1 + ar0
+   ) 
+
+third2 = rot60*third0inv*third1inv
+
+I = I + ideal(r_2*third2^3*ar2 + ar1)
 
 Q = R/I
 
-a1 = matrix{{0,0,1},{c_1,s_1,1}}
-a2 = matrix{{1,0,1},{1 + c_2^2 - s_2^2,2*c_2*s_2,1}}
-a3 = matrix{{1,0,1},{1 + c_2,s_2,1}}
-a4 = matrix{{a,b,1},{a + c_3^2 - s_3^2,b + 2*c_3*s_3,1}}
-a5 = matrix{{a,b,1},{a + c_3,b + s_3,1}}
-a6 = matrix{{0,0,1},{c_1^2 - s_1^2,2*c_1*s_1,1}}
+third0 = promote(third0,Q)
+third1 = promote(third1,Q)
+third2 = promote(third2,Q)
 
-l1 = det(a1_{1,2})|det(a1_{2,0})|det(a1_{0,1})
-l2 = det(a2_{1,2})|det(a2_{2,0})|det(a2_{0,1})
-l3 = det(a3_{1,2})|det(a3_{2,0})|det(a3_{0,1})
-l4 = det(a4_{1,2})|det(a4_{2,0})|det(a4_{0,1})
-l5 = det(a5_{1,2})|det(a5_{2,0})|det(a5_{0,1})
-l6 = det(a6_{1,2})|det(a6_{2,0})|det(a6_{0,1})
+rot120 = matrix{{-1/2,-sr3/2},{sr3/2,-1/2}}
 
-b1 = l1||l2
-b2 = l3||l4
-b3 = l5||l6
+a0 = (v0 | (v0 + third0*ar0))||Ones
+l0 = det(a0^{1,2})||det(a0^{2,0})||det(a0^{0,1})
 
-p1_0 = det(b1_{1,2})||det(b1_{2,0})
-p2_0 = det(b2_{1,2})||det(b2_{2,0})
-p3_0 = det(b3_{1,2})||det(b3_{2,0})
+a1 = (v1 | (v1 + third1^2*ar1))||Ones
+l1 = det(a1^{1,2})||det(a1^{2,0})||det(a1^{0,1})
 
-p1 = p1_0*det(b2_{0,1})*det(b3_{0,1})
-p2 = p2_0*det(b3_{0,1})*det(b1_{0,1})
-p3 = p3_0*det(b1_{0,1})*det(b2_{0,1})
+a2 = (v1 | (v1 + third1*ar1))||Ones
+l2 = det(a2^{1,2})||det(a2^{2,0})||det(a2^{0,1})
 
-rotm = matrix{{-1,-r3},{r3,-1}}
+a3 = (v2 | (v2 + third2^2*ar2))||Ones
+l3 = det(a3^{1,2})||det(a3^{2,0})||det(a3^{0,1})
 
-print (4 * p1 + 2 * rotm * p2 + rotm^2 * p3 == 0)
-print (4 * p1 + rotm^2 * p2 + 2 * rotm * p3 == 0)
+a4 = (v2 | (v2 + third2*ar2))||Ones
+l4 = det(a4^{1,2})||det(a4^{2,0})||det(a4^{0,1})
+
+a5 = (v0 | (v0 + third0^2*ar0))||Ones
+l5 = det(a5^{1,2})||det(a5^{2,0})||det(a5^{0,1})
+
+b0 = l0|l1
+b1 = l2|l3
+b2 = l4|l5
+
+p0_0 = det(b0^{1,2})||det(b0^{2,0})
+p1_0 = det(b1^{1,2})||det(b1^{2,0})
+p2_0 = det(b2^{1,2})||det(b2^{2,0})
+
+p0 = p0_0*det(b1^{0,1})*det(b2^{0,1})
+p1 = p1_0*det(b2^{0,1})*det(b0^{0,1})
+p2 = p2_0*det(b0^{0,1})*det(b1^{0,1})
+
+<< "Safety check.  Have I mod'ed out the whole ring? (Should be -1-)" << endl
+<< 1_Q << endl
+<< "Either this:" << endl << p0 + rot120 * p1 + rot120^2 * p2 << endl
+<< "or this: " << endl << p0 + rot120^2 * p1 + rot120 * p2 << endl
+<< "should be zero" << endl
+<< "but not both." << endl
