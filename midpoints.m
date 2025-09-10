@@ -5,3 +5,4 @@ such transformations.
 *-
 
 print 1
+exit 0

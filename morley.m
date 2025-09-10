@@ -84,9 +84,9 @@ p0 = p0_0*det(b1^{0,1})*det(b2^{0,1})
 p1 = p1_0*det(b2^{0,1})*det(b0^{0,1})
 p2 = p2_0*det(b0^{0,1})*det(b1^{0,1})
 
-<< "Safety check.  Have I mod'ed out the whole ring? (Should be -1-)" << endl
-<< 1_Q << endl
-<< "Either this:" << endl << p0 + rot120 * p1 + rot120^2 * p2 << endl
-<< "or this: " << endl << p0 + rot120^2 * p1 + rot120 * p2 << endl
-<< "should be zero" << endl
-<< "but not both." << endl
+<< "Boolean for 'Is ring zero?' (it should be false): "
+<< 1_Q == 0 << endl
+<< "Exactly one of the following Booleans should be true: "
+<< p0 + rot120 * p1 + rot120^2 * p2 == 0 << ", "
+<< p0 + rot120^2 * p1 + rot120 * p2 == 0 << endl
+exit 0
