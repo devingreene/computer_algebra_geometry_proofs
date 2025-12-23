@@ -54,6 +54,7 @@ r1 = a*t1^3-3*b*t1^2-3*a*t1+b
 r2 = (-a*t2^3)+t2^3-3*b*t2^2+3*a*t2-3*t2+b
 -- Numerator of addt(b/a,addt(addt(t3,t3),t3)) - b/(a - 1)
 r3 = (-b^2*t3^3)-a^2*t3^3+a*t3^3+3*b*t3^2+3*b^2*t3+3*a^2*t3-3*a*t3-b
+
 -* 'Regularizer' to make sure that trisector angles sum to sixty
 degrees. *-
 r4 = (t1^2*t2^2*t3^2-3*t2^2*t3^2-8*t1*t2*t3^2-3*t1^2*t3^2+t3^2-8*t1*t2^2*t3 
@@ -66,8 +67,9 @@ a1d = promote(a1d,S)
 a2n = promote(a2n,S)
 a2d = promote(a2d,S)
 
--- Double check that I haven't 'zero-ized' the entire ring.
-uglyp(1_S)
+-- Check that this isn't a 0/0 case
+uglyp((a1n != 0 or a1d != 0) and (a2n != 0 or a2d != 0))
+
 -- Must have a1n/a1d = sqrt(3)
 uglyp(a1n^2 - 3*a1d^2)
 uglyp(a2n^2 - 3*a2d^2)
