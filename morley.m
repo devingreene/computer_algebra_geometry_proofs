@@ -23,11 +23,11 @@ ar2 = v0 - v2
 Ones = matrix{{1,1}}
 
 -* Rotation matrix *-
-third = (x,y) -> matrix{{x,-y},{y,x}}
+rotation = (x,y) -> matrix{{x,-y},{y,x}}
 
-third0 = third(c_0,s_0)
+third0 = rotation(c_0,s_0)
 third0inv = transpose third0
-third1 = third(c_1,s_1)
+third1 = rotation(c_1,s_1)
 third1inv = transpose third1
 
 rot60 = matrix{{1/2,-sr3/2},{sr3/2,1/2}}
