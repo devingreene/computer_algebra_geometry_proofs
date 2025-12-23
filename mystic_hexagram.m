@@ -34,5 +34,13 @@ p2 = matrix{{det(m14_{1,2}),det(m14_{2,0}),det(m14_{0,1})}};
 p3 = matrix{{det(m25_{1,2}),det(m25_{2,0}),det(m25_{0,1})}};
 
 m = p1||p2||p3;
-<< "Determinant is " << det(m) << ", and it should be " << 0 << endl;
+
+-- Is determinant 0?
+print(det(m) == 0)
+
+-* I don't think that det = 0 is sufficient for concluding that there
+   something in the null space.  For example, if one has a zero
+   adjunct.  So check that at least one minor is non-zero *-
+print(det(m_{1,2}^{1,2}) != 0
+
 exit 0
