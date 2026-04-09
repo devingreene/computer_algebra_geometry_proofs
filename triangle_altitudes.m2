@@ -13,7 +13,7 @@ l0 = line(p1,p2)
 l1 = line(p2,p0)
 l2 = line(p0,p1)
 
--- Points at infinity perpendicular from li-s
+-- Points at infinity perpendicular from li's
 perp0 = l0^{0,1}||0
 perp1 = l1^{0,1}||0
 perp2 = l2^{0,1}||0
@@ -23,8 +23,8 @@ alt1 = line(p1,perp1)
 alt2 = line(p2,perp2)
 
 M = alt0|alt1|alt2
-print(det(M) == 0)
 
--- Check for non-zero minor
-print(det(M_{1,2}^{1,2}) != 0)
+-- Check det = 0 and one non-zero minor
+<< det(M) == 0 and det(M_{1,2}^{1,2}) != 0 << endl
+
 exit 0

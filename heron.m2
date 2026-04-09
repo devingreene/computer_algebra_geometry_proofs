@@ -6,5 +6,3 @@ s = (a + b + 1)/2
 rdcand = s*(s - a)*(s-b)*(s-1)
 
 << rdcand - y^2/4 == 0
-
--- vim: ft=

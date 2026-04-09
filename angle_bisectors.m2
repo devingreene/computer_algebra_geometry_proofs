@@ -58,4 +58,3 @@ Ddalt = promote(Ddalt,S)
 << det(p2||p3)_{1,2} != 0 << endl
 << "Please examine source code for clarification" << endl
 exit 0
--- vim: ft=

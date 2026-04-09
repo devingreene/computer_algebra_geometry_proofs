@@ -39,7 +39,7 @@ I = ideal(
     -* Rotate edges into each other *-
     r_0*third0^3*ar0 + ar2,
     r_1*third1^3*ar1 + ar0
-   ) 
+   )
 
 -* Sum of trisectors is 60 degress *-
 third2 = rot60*third0inv*third1inv
