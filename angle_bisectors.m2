@@ -55,6 +55,6 @@ Ddalt = promote(Ddalt,S)
 << Dd*Ddalt != 0 << endl
 
 -- Check a minor
-<< det(p2||p3)_{1,2} != 0 << endl
-<< "Please examine source code for clarification" << endl
+<< det(p2||p3)_{1,2} != 0 << " and, " << endl
+<< "    Please examine source code for clarification" << endl
 exit 0
